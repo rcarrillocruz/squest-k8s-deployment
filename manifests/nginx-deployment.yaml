@@ -31,28 +31,28 @@ spec:
             - nginx
             - -c
             - /etc/nginx/squest/nginx.conf
-          image: nginx:alpine
+          image: nginxinc/nginx-unprivileged
           name: nginx
           resources: {}
           volumeMounts:
             - mountPath: /app/media
-              name: nginx-django-media
+              name: django-media
               readOnly: true
             - mountPath: /app/static
-              name: nginx-django-static
+              name: django-static
               readOnly: true
             - mountPath: /etc/nginx/squest/
               name: nginx-config
               readOnly: true
       restartPolicy: Always
       volumes:
-        - name: nginx-django-media
+        - name: django-media
           persistentVolumeClaim:
-            claimName: nginx-django-media
+            claimName: django-media
             readOnly: true
-        - name: nginx-django-static
+        - name: django-static
           persistentVolumeClaim:
-            claimName: nginx-django-static
+            claimName: django-static
             readOnly: true
         - name: nginx-config
           configMap:

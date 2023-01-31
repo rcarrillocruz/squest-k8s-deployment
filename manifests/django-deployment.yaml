@@ -45,26 +45,26 @@ spec:
                   name: squest-env
             - name: WAIT_HOSTS
               value: db:3306,rabbitmq:5672
-          image: public.ecr.aws/u5z9g9z0/squest:1.7.2
+          image: quay.io/hewlettpackardenterprise/squest:latest
           imagePullPolicy: Always
           name: django
           resources: {}
-          #volumeMounts:
-            #- mountPath: /app/static
-            #  name: django-static
-            #- mountPath: /app/media
-            #  name: django-media
-        #    - mountPath: /app/backup
-         #     name: backup
+          volumeMounts:
+            - mountPath: /app/static
+              name: django-static
+            - mountPath: /app/media
+              name: django-media
+            - mountPath: /app/backup
+              name: backup
       restartPolicy: Always
-      #volumes:
-        #- name: django-static
-        #  persistentVolumeClaim:
-        #    claimName: django-static
-        #- name: django-media
-        #  persistentVolumeClaim:
-        #    claimName: django-media
-        #- name: backup
-        #  persistentVolumeClaim:
-        #    claimName: backup
+      volumes:
+        - name: django-static
+          persistentVolumeClaim:
+            claimName: django-static
+        - name: django-media
+          persistentVolumeClaim:
+            claimName: django-media
+        - name: backup
+          persistentVolumeClaim:
+            claimName: backup
 status: {}

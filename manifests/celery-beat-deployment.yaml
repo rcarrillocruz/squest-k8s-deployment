@@ -42,8 +42,7 @@ spec:
                   name: squest-env
             - name: WAIT_HOSTS
               value: db:3306,rabbitmq:5672,django:8000
-          #image: quay.io/hewlettpackardenterprise/squest:latest
-          image: public.ecr.aws/u5z9g9z0/squest:latest
+          image: quay.io/hewlettpackardenterprise/squest:latest
           name: celery-beat
           resources: {}
           volumeMounts:
